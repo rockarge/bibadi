@@ -26,11 +26,11 @@
       height: 100%;
       object-fit: contain;
       transform-style: preserve-3d;
-      transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+      transition: transform 0.1s ease-out, filter 0.3s ease;
       filter: drop-shadow(0 0 8px #00ff00);
     }
 
-    .bibi-container:hover .bibi-image {
+    .bibi-image:hover {
       filter: drop-shadow(0 0 12px #00ff00);
     }
   </style>
@@ -42,16 +42,22 @@
 
   <script>
     const bibi = document.getElementById("bibi");
-    const container = document.querySelector(".bibi-container");
 
-    container.addEventListener("mousemove", (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 30;
-      const y = (e.clientY / window.innerHeight - 0.5) * 30;
-      bibi.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    window.addEventListener("mousemove", (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const offsetX = (e.clientX - centerX) / centerX; // -1 ile 1 arasında
+      const offsetY = (e.clientY - centerY) / centerY; // -1 ile 1 arasında
+
+      const rotateX = offsetY * -15; // dikey hareket
+      const rotateY = offsetX * 15;  // yatay hareket
+
+      bibi.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    container.addEventListener("mouseleave", () => {
-      bibi.style.transform = "rotateY(0deg) rotateX(0deg)";
+    window.addEventListener("mouseleave", () => {
+      bibi.style.transform = "rotateX(0deg) rotateY(0deg)";
     });
   </script>
 </body>
