@@ -36,7 +36,36 @@
   transition: transform 0.1s ease-out;
   z-index: 2;
 }
+.bibi-container {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
 
+  .bibi-body {
+    width: 100%;
+    display: block;
+  }
+
+  .bibi-head,
+  .bibi-head-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+  }
+
+  .bibi-head-shadow {
+    filter: blur(10px) brightness(0.5);
+    z-index: 1;
+  }
+
+  .bibi-head {
+    z-index: 2;
+  }
 </style>
 
 </head>
