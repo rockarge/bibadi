@@ -18,23 +18,24 @@
     }
 
     #bibi-body {
-      position: absolute;
-      width: 300px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
+  position: absolute;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
 
-    #bibi-head {
-      position: absolute;
-      width: 120px;
-      left: 50%;
-      top: 36%;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease-out;
-      z-index: 2;
-    }
+#bibi-head {
+  position: absolute;
+  width: 140px; /* boyutu biraz büyüttüm */
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  z-index: 2;
+}
+
   </style>
 </head>
 <body>
@@ -44,21 +45,22 @@
   </div>
 
   <script>
-    const head = document.getElementById('bibi-head');
+   const head = document.getElementById('bibi-head');
 
-    document.addEventListener('mousemove', (e) => {
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
+document.addEventListener('mousemove', (e) => {
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
 
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
+  const deltaX = e.clientX - centerX;
+  const deltaY = e.clientY - centerY;
 
-      const maxTilt = 15; // maks. dönme derecesi
-      const rotateY = (deltaX / centerX) * maxTilt;
-      const rotateX = -(deltaY / centerY) * maxTilt;
+  const maxTilt = 25;
+  const rotateY = (deltaX / centerX) * maxTilt;
+  const rotateX = -(deltaY / centerY) * maxTilt;
 
-      head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+  head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
   </script>
 </body>
 </html>
