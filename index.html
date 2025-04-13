@@ -15,7 +15,7 @@
     .bibi-container {
       position: relative;
       width: 300px;
-      height: 400px;
+      height: 500px;
       margin: 0 auto;
       top: 50%;
       transform: translateY(-50%);
@@ -28,43 +28,40 @@
       z-index: 1;
     }
 
-    .bibi-head,
-    .bibi-head-shadow {
-      position: absolute;
-      width: 90%;
-      top: 18%;
-      left: 5%;
-      pointer-events: none;
-      transition: transform 0.3s ease;
-    }
-
-    .bibi-head-shadow {
-      filter: blur(12px) brightness(0.3);
-      z-index: 1;
-    }
-
     .bibi-head {
+      position: absolute;
+      width: 80%;
+      top: 60px; /* gövdeye göre ayarla */
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
       z-index: 2;
+      transition: transform 0.1s ease-out;
+      transform-origin: center center;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div class="bibi-container">
     <img src="bibi-body.png" alt="Bibi Body" class="bibi-body" />
-    <img src="bibi-head.png" alt="Bibi Head Shadow" class="bibi-head-shadow" />
     <img src="bibi-head.png" alt="Bibi Head" class="bibi-head" />
   </div>
 
   <script>
     const head = document.querySelector('.bibi-head');
-    const shadow = document.querySelector('.bibi-head-shadow');
 
     document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 40;
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
 
-      head.style.transform = `translate(${x}px, ${y}px)`;
-      shadow.style.transform = `translate(${x * 1.2}px, ${y * 1.2}px)`;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const maxTilt = 15; // derece cinsinden
+      const rotateY = (deltaX / centerX) * maxTilt;
+      const rotateX = -(deltaY / centerY) * maxTilt;
+
+      head.style.transform = `translateX(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
   </script>
 </body>
