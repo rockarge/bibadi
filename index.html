@@ -75,6 +75,11 @@
   <img src="bibi-head.png" alt="Bibi Head" class="bibi-head" />
   <img src="bibi-head.png" alt="Bibi Head Shadow" class="bibi-head-shadow" />
 </div>
+<div class="bibi-container">
+  <img src="bibi-body.png" class="bibi-body" />
+  <img src="bibi-head-shadow.png" class="bibi-head-shadow" />
+  <img src="bibi-head.png" class="bibi-head" />
+</div>
 
 
   <script>
@@ -93,6 +98,19 @@
 
       head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
+    <script>
+  const head = document.querySelector('.bibi-head');
+  const shadow = document.querySelector('.bibi-head-shadow');
+
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+
+    head.style.transform = `translate(${x}px, ${y}px)`;
+    shadow.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
+  });
+</script>
+
   </script>
 </body>
 </html>
