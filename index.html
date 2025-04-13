@@ -2,60 +2,62 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bibi AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibi - Yapay Zeka Asistanı</title>
   <style>
     body {
       margin: 0;
-      background: radial-gradient(ellipse at center, #000 0%, #0a0a0a 100%);
+      background-color: black;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    }
+
+    #container {
+      position: relative;
+      width: 100vw;
       height: 100vh;
-      perspective: 1200px;
     }
 
-    .bibi-wrapper {
+    #bibi-body {
+      position: absolute;
       width: 300px;
-      height: 300px;
-      transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
     }
 
-    .bibi {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transform-style: preserve-3d;
-      will-change: transform;
-      /* drop-shadow kaldırıldı */
+    #bibi-head {
+      position: absolute;
+      width: 120px;
+      left: 50%;
+      top: 36%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <div class="bibi-wrapper" id="bibiWrapper">
-    <img src="bibi-main.png" alt="Bibi" class="bibi" />
+  <div id="container">
+    <img id="bibi-body" src="https://raw.githubusercontent.com/rockarge/bibadi/main/bibi-body.png" alt="Bibi Body">
+    <img id="bibi-head" src="https://raw.githubusercontent.com/rockarge/bibadi/main/bibi-head.png" alt="Bibi Head">
   </div>
 
   <script>
-    const wrapper = document.getElementById("bibiWrapper");
+    const head = document.getElementById('bibi-head');
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener('mousemove', (e) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
 
-      const offsetX = (e.clientX - centerX) / centerX;
-      const offsetY = (e.clientY - centerY) / centerY;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
 
-      const rotateX = offsetY * -15;
-      const rotateY = offsetX * 15;
+      const maxTilt = 15; // maks. dönme derecesi
+      const rotateY = (deltaX / centerX) * maxTilt;
+      const rotateX = -(deltaY / centerY) * maxTilt;
 
-      wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-    });
-
-    document.addEventListener("mouseleave", () => {
-      wrapper.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+      head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
   </script>
 </body>
