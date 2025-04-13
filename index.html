@@ -12,43 +12,40 @@
       overflow: hidden;
     }
 
-    .bibi-container {
+    #bibi-container {
       position: relative;
-      width: 300px;
-      height: 500px;
-      margin: 0 auto;
-      top: 50%;
-      transform: translateY(-50%);
+      width: 100%;
+      height: 100%;
     }
 
-    .bibi-body {
-      width: 100%;
-      display: block;
-      position: relative;
+    #bibi-body {
+      position: absolute;
+      width: 360px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       z-index: 1;
     }
 
-    .bibi-head {
+    #bibi-head {
       position: absolute;
-      width: 80%;
-      top: 60px; /* gövdeye göre ayarla */
+      width: 165px; /* önceki 130'du */
       left: 50%;
-      transform: translateX(-50%) translateY(0);
-      z-index: 2;
+      top: 44.5%; /* önceki 43.5 idi */
+      transform: translate(-50%, -50%);
       transition: transform 0.1s ease-out;
-      transform-origin: center center;
-      pointer-events: none;
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <div class="bibi-container">
-    <img src="bibi-body.png" alt="Bibi Body" class="bibi-body" />
-    <img src="bibi-head.png" alt="Bibi Head" class="bibi-head" />
+  <div id="bibi-container">
+    <img id="bibi-body" src="bibi-body.png" alt="Bibi Body">
+    <img id="bibi-head" src="bibi-head.png" alt="Bibi Head">
   </div>
 
   <script>
-    const head = document.querySelector('.bibi-head');
+    const head = document.getElementById('bibi-head');
 
     document.addEventListener('mousemove', (e) => {
       const centerX = window.innerWidth / 2;
@@ -57,11 +54,11 @@
       const deltaX = e.clientX - centerX;
       const deltaY = e.clientY - centerY;
 
-      const maxTilt = 15; // derece cinsinden
+      const maxTilt = 25;
       const rotateY = (deltaX / centerX) * maxTilt;
       const rotateX = -(deltaY / centerY) * maxTilt;
 
-      head.style.transform = `translateX(-50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
   </script>
 </body>
