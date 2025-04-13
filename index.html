@@ -5,112 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bibi AI</title>
   <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background-color: black;
-    overflow: hidden;
-  }
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+    }
 
-  #bibi-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
+    .bibi-container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      margin: 0 auto;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
- #bibi-body {
-  position: absolute;
-  width: 300px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
+    .bibi-body {
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
 
-#bibi-head {
-  position: absolute;
-  width: 260px;
-  left: 50%;
-  top: 50%; /* tam hizada olacak şekilde */
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
-  z-index: 2;
-}
-.bibi-container {
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 100px;
-  }
+    .bibi-head,
+    .bibi-head-shadow {
+      position: absolute;
+      width: 90%;
+      top: 18%;
+      left: 5%;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
 
-  .bibi-body {
-    width: 100%;
-    display: block;
-  }
+    .bibi-head-shadow {
+      filter: blur(12px) brightness(0.3);
+      z-index: 1;
+    }
 
-  .bibi-head,
-  .bibi-head-shadow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-    transition: transform 0.3s ease;
-  }
-
-  .bibi-head-shadow {
-    filter: blur(10px) brightness(0.5);
-    z-index: 1;
-  }
-
-  .bibi-head {
-    z-index: 2;
-  }
-</style>
-
+    .bibi-head {
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
   <div class="bibi-container">
-  <img src="bibi-body.png" alt="Bibi Body" class="bibi-body" />
-  <img src="bibi-head.png" alt="Bibi Head" class="bibi-head" />
-  <img src="bibi-head.png" alt="Bibi Head Shadow" class="bibi-head-shadow" />
-</div>
-<div class="bibi-container">
-  <img src="bibi-body.png" class="bibi-body" />
-  <img src="bibi-head-shadow.png" class="bibi-head-shadow" />
-  <img src="bibi-head.png" class="bibi-head" />
-</div>
-
+    <img src="bibi-body.png" alt="Bibi Body" class="bibi-body" />
+    <img src="bibi-head.png" alt="Bibi Head Shadow" class="bibi-head-shadow" />
+    <img src="bibi-head.png" alt="Bibi Head" class="bibi-head" />
+  </div>
 
   <script>
-    const head = document.getElementById('bibi-head');
+    const head = document.querySelector('.bibi-head');
+    const shadow = document.querySelector('.bibi-head-shadow');
 
     document.addEventListener('mousemove', (e) => {
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
+      const x = (e.clientX / window.innerWidth - 0.5) * 40;
+      const y = (e.clientY / window.innerHeight - 0.5) * 40;
 
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
-
-      const maxTilt = 25;
-      const rotateY = (deltaX / centerX) * maxTilt;
-      const rotateX = -(deltaY / centerY) * maxTilt;
-
-      head.style.transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      head.style.transform = `translate(${x}px, ${y}px)`;
+      shadow.style.transform = `translate(${x * 1.2}px, ${y * 1.2}px)`;
     });
-    <script>
-  const head = document.querySelector('.bibi-head');
-  const shadow = document.querySelector('.bibi-head-shadow');
-
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-
-    head.style.transform = `translate(${x}px, ${y}px)`;
-    shadow.style.transform = `translate(${x * 1.5}px, ${y * 1.5}px)`;
-  });
-</script>
-
   </script>
 </body>
 </html>
