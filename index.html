@@ -1,35 +1,95 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bibi – AI Asistan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bibi - Your AI Companion</title>
   <style>
     body {
-      background-color: #0f0f0f;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 40px;
+      padding: 0;
+      background-color: #0d0d0d;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5rem;
       text-align: center;
     }
-    img {
-      max-width: 300px;
-      margin-bottom: 20px;
-      border-radius: 12px;
+
+    .bibi-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+      animation: fadeIn 2s ease-in-out;
     }
-    h1 {
-      margin-bottom: 10px;
+
+    .bibi-main-image {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.5s, filter 0.5s;
+      filter: brightness(0.9);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
     }
-    p {
-      font-size: 1.1rem;
-      color: #cccccc;
+
+    .bibi-main-image:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .upload-section {
+      margin: 30px;
+    }
+
+    textarea {
+      width: 80%;
+      height: 150px;
+      background-color: #1a1a1a;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    input[type="file"] {
+      margin-top: 15px;
+      color: #00ff00;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <img src="./bibi.png" alt="Bibi - Your AI Assistant" />
-  <h1>Ben Bibi</h1>
-  <p>Sana yardımcı olmak için buradayım 💬</p>
+  <h1>Bibi</h1>
+
+  <!-- Ana görsel -->
+  <div class="bibi-container">
+    <img src="bibi-main.jpg" alt="Bibi AI" class="bibi-main-image">
+  </div>
+
+  <!-- Metin girişi -->
+  <div class="upload-section">
+    <textarea placeholder="Sorunu buraya yaz..."></textarea><br>
+    <input type="file">
+  </div>
 </body>
 </html>
