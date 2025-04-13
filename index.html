@@ -16,30 +16,54 @@
       perspective: 1000px;
     }
 
-    .bibi-container {
+    .layer-container {
+      position: relative;
       width: 320px;
       height: 320px;
       transform-style: preserve-3d;
       transition: transform 0.2s ease-out;
     }
 
-    .bibi-image {
+    .bibi-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transform: translateZ(20px);
+      pointer-events: none;
+    }
+
+    .layer1 {
+      z-index: 1;
+      transform: translateZ(60px);
       filter: drop-shadow(0 0 10px #00ff00);
-      transition: transform 0.1s ease-out;
+    }
+
+    .layer2 {
+      z-index: 2;
+      opacity: 0.5;
+      filter: blur(1px);
+      transform: translateZ(30px);
+    }
+
+    .layer3 {
+      z-index: 3;
+      opacity: 0.2;
+      filter: blur(2px);
+      transform: translateZ(10px);
     }
   </style>
 </head>
 <body>
-  <div class="bibi-container" id="container">
-    <img src="bibi-main.png" alt="Bibi" class="bibi-image" id="bibi"/>
+  <div class="layer-container" id="bibiContainer">
+    <img src="bibi-main.png" class="bibi-layer layer1" />
+    <img src="bibi-main.png" class="bibi-layer layer2" />
+    <img src="bibi-main.png" class="bibi-layer layer3" />
   </div>
 
   <script>
-    const container = document.getElementById("container");
+    const container = document.getElementById("bibiContainer");
 
     window.addEventListener("mousemove", (e) => {
       const centerX = window.innerWidth / 2;
@@ -48,8 +72,8 @@
       const offsetX = (e.clientX - centerX) / centerX;
       const offsetY = (e.clientY - centerY) / centerY;
 
-      const rotateX = offsetY * -15;
-      const rotateY = offsetX * 15;
+      const rotateX = offsetY * -10;
+      const rotateY = offsetX * 10;
 
       container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
