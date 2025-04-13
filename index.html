@@ -1,42 +1,43 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bibi AI</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background-color: black;
-      overflow: hidden;
-    }
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+  }
 
-    #bibi-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
+  #bibi-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 
-    #bibi-body {
-      position: absolute;
-      width: 360px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
+  #bibi-body {
+    position: absolute;
+    width: 300px; /* küçültüldü */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
 
-    #bibi-head {
-      position: absolute;
-      width: 190px;
-      left: 50%;
-      top: 47%;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease-out;
-      z-index: 2;
-    }
-  </style>
+  #bibi-head {
+    position: absolute;
+    width: 260px; /* büyütüldü */
+    left: 50%;
+    top: 42%; /* yukarı alındı */
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+    z-index: 2;
+  }
+</style>
+
 </head>
 <body>
   <div id="bibi-container">
