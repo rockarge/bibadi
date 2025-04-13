@@ -1,90 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bibi - Your AI Companion</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bibi AI</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #0d0d0d;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .bibi-container {
+      background-color: #000;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 60px 0 40px 0;
+      height: 100vh;
+    }
+
+    .bibi-container {
       perspective: 1000px;
+      width: 500px;
+      height: 500px;
     }
 
-    #bibi-img {
-      width: 300px;
-      height: auto;
-      border-radius: 10px;
-      transition: transform 0.2s ease-out;
-      filter: drop-shadow(0 0 12px #00ff00);
-      will-change: transform;
-    }
-
-    .upload-section {
-      margin: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    textarea {
-      width: 80%;
-      height: 150px;
-      background-color: #1a1a1a;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      padding: 10px;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-
-    input[type="file"] {
-      margin-top: 15px;
-      color: #00ff00;
+    .bibi-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
   </style>
 </head>
 <body>
-
-  <!-- Ana görsel -->
   <div class="bibi-container">
-    <img src="bibi-main.jpg" alt="Bibi AI" id="bibi-img">
+    <img src="test.png" alt="Bibi" class="bibi-image" id="bibi"/>
   </div>
 
-  <!-- Metin girişi -->
-  <div class="upload-section">
-    <textarea placeholder="Sorunu buraya yaz..."></textarea><br>
-    <input type="file">
-  </div>
-
-  <!-- Mouse efektleri -->
   <script>
-    const bibiImg = document.getElementById('bibi-img');
+    const bibi = document.getElementById("bibi");
+    const container = document.querySelector(".bibi-container");
 
-    document.addEventListener('mousemove', (e) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 40;
-      const y = (window.innerHeight / 2 - e.clientY) / 40;
-      bibiImg.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
+    container.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      bibi.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
     });
 
-    document.addEventListener('mouseleave', () => {
-      bibiImg.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    container.addEventListener("mouseleave", () => {
+      bibi.style.transform = "rotateY(0deg) rotateX(0deg)";
     });
   </script>
 </body>
