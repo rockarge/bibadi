@@ -13,73 +13,49 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      perspective: 1000px;
+      perspective: 1200px;
     }
 
-    .layer-container {
-      position: relative;
-      width: 320px;
-      height: 320px;
+    .bibi-wrapper {
+      width: 300px;
+      height: 300px;
       transform-style: preserve-3d;
-      transition: transform 0.2s ease-out;
+      transition: transform 0.1s ease-out;
     }
 
-    .bibi-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .bibi {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      pointer-events: none;
-    }
-
-    .layer1 {
-      z-index: 1;
-      transform: translateZ(60px);
-      filter: drop-shadow(0 0 10px #00ff00);
-    }
-
-    .layer2 {
-      z-index: 2;
-      opacity: 0.5;
-      filter: blur(1px);
-      transform: translateZ(30px);
-    }
-
-    .layer3 {
-      z-index: 3;
-      opacity: 0.2;
-      filter: blur(2px);
-      transform: translateZ(10px);
+      filter: drop-shadow(0 0 15px #00ff00);
+      transform-style: preserve-3d;
+      will-change: transform;
     }
   </style>
 </head>
 <body>
-  <div class="layer-container" id="bibiContainer">
-    <img src="bibi-main.png" class="bibi-layer layer1" />
-    <img src="bibi-main.png" class="bibi-layer layer2" />
-    <img src="bibi-main.png" class="bibi-layer layer3" />
+  <div class="bibi-wrapper" id="bibiWrapper">
+    <img src="bibi-main.png" alt="Bibi" class="bibi" />
   </div>
 
   <script>
-    const container = document.getElementById("bibiContainer");
+    const wrapper = document.getElementById("bibiWrapper");
 
-    window.addEventListener("mousemove", (e) => {
+    document.addEventListener("mousemove", (e) => {
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
 
       const offsetX = (e.clientX - centerX) / centerX;
       const offsetY = (e.clientY - centerY) / centerY;
 
-      const rotateX = offsetY * -10;
-      const rotateY = offsetX * 10;
+      const rotateX = offsetY * -15;
+      const rotateY = offsetX * 15;
 
-      container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
     });
 
-    window.addEventListener("mouseleave", () => {
-      container.style.transform = "rotateX(0deg) rotateY(0deg)";
+    document.addEventListener("mouseleave", () => {
+      wrapper.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
     });
   </script>
 </body>
