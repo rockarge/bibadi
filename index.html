@@ -16,38 +16,31 @@
       align-items: center;
       justify-content: start;
       min-height: 100vh;
-    }
-
-    h1 {
-      margin-top: 40px;
-      font-size: 2.5rem;
-      text-align: center;
+      overflow-x: hidden;
     }
 
     .bibi-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 40px 0;
-      animation: fadeIn 2s ease-in-out;
+      margin: 60px 0 40px 0;
+      perspective: 1000px;
     }
 
-    .bibi-main-image {
+    #bibi-img {
       width: 300px;
       height: auto;
       border-radius: 10px;
-      transition: transform 0.5s, filter 0.5s;
-      filter: brightness(0.9);
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
-    }
-
-    .bibi-main-image:hover {
-      transform: scale(1.05);
-      filter: brightness(1.1);
+      transition: transform 0.2s ease-out;
+      filter: drop-shadow(0 0 12px #00ff00);
+      will-change: transform;
     }
 
     .upload-section {
       margin: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     textarea {
@@ -65,25 +58,13 @@
       margin-top: 15px;
       color: #00ff00;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 <body>
-  <h1>Bibi</h1>
 
   <!-- Ana görsel -->
   <div class="bibi-container">
-    <img src="bibi-main.jpg" alt="Bibi AI" class="bibi-main-image">
+    <img src="bibi-main.jpg" alt="Bibi AI" id="bibi-img">
   </div>
 
   <!-- Metin girişi -->
@@ -91,5 +72,20 @@
     <textarea placeholder="Sorunu buraya yaz..."></textarea><br>
     <input type="file">
   </div>
+
+  <!-- Mouse efektleri -->
+  <script>
+    const bibiImg = document.getElementById('bibi-img');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.clientX) / 40;
+      const y = (window.innerHeight / 2 - e.clientY) / 40;
+      bibiImg.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      bibiImg.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  </script>
 </body>
 </html>
