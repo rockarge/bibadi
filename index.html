@@ -72,7 +72,7 @@
       position: absolute;
       width: 300px;
       left: 50%;
-      top: 41%; /* Daha uyumlu hizalama */
+      top: 41%;
       transform: translate(-50%, -50%);
       z-index: 1;
       opacity: 0.65;
@@ -83,29 +83,28 @@
     #bibi-head,
     #bibi-head-shadow {
       position: absolute;
-      width: 260px;
+      width: 280px; /* önce 260px idi */
       left: 50%;
-      top: 41%; /* Kafa daha aşağıda */
+      top: 41.8%;
       transform-style: preserve-3d;
       transition: transform 0.5s ease-out;
     }
 
     #bibi-head {
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -52%);
       z-index: 2;
-      opacity: 0.85;
+      opacity: 0.88;
       mix-blend-mode: screen;
-      filter: drop-shadow(0 0 6px #0f0) brightness(0.95);
+      filter: drop-shadow(0 0 8px #0f0) brightness(1.05);
     }
 
     #bibi-head-shadow {
-      transform: translate(-50%, -50%);
-      filter: blur(14px) brightness(0.3);
-      opacity: 0.4;
+      transform: translate(-50%, -52%);
+      filter: blur(16px) brightness(0.28);
+      opacity: 0.35;
       z-index: 1;
       pointer-events: none;
     }
-
   </style>
 </head>
 <body>
@@ -144,10 +143,10 @@
       const skewX = (deltaX / centerX) * 5;
       const skewY = (deltaY / centerY) * 5;
 
-      const transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) skew(${skewX}deg, ${skewY}deg)`;
+      const transform = `translate(-50%, -52%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) skew(${skewX}deg, ${skewY}deg)`;
 
       head.style.transform = transform;
-      shadow.style.transform = `translate(-50%, -50%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
+      shadow.style.transform = `translate(-50%, -52%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
     });
 
     // Matrix Yağmur Efekti
