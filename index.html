@@ -80,31 +80,32 @@
       filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
     }
 
-    #bibi-head,
-    #bibi-head-shadow {
-      position: absolute;
-      width: 280px; /* önce 260px idi */
-      left: 50%;
-      top: 41.8%;
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease-out;
-    }
+    
+  #bibi-head,
+  #bibi-head-shadow {
+    position: absolute;
+    width: 280px;
+    left: 49.2%; /* sola kaydırıldı */
+    top: 41.2%;  /* yukarı alındı */
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+  }
 
-    #bibi-head {
-      transform: translate(-50%, -52%);
-      z-index: 2;
-      opacity: 0.88;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 8px #0f0) brightness(1.05);
-    }
+  #bibi-head {
+    transform: translate(-50%, -52%);
+    z-index: 2;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 12px #0f0) brightness(1.15);
+  }
 
-    #bibi-head-shadow {
-      transform: translate(-50%, -52%);
-      filter: blur(16px) brightness(0.28);
-      opacity: 0.35;
-      z-index: 1;
-      pointer-events: none;
-    }
+  #bibi-head-shadow {
+    transform: translate(-50%, -52%);
+    filter: blur(20px) brightness(0.25);
+    opacity: 0.32;
+    z-index: 1;
+    pointer-events: none;
+  }
   </style>
 </head>
 <body>
