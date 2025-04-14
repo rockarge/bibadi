@@ -81,30 +81,31 @@
     }
 
     #bibi-head,
-    #bibi-head-shadow {
-      position: absolute;
-      width: 260px;
-      left: 50%;
-      top: 42.8%; /* Önceki 42%'den yukarı alındı */
-      transform-style: preserve-3d;
-      transition: transform 0.5s ease-out;
-    }
+#bibi-head-shadow {
+  position: absolute;
+  width: 260px;
+  left: 50%;
+  top: 41.8%; /* Daha yumuşak hizalama */
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-out;
+}
 
-    #bibi-head {
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      opacity: 0.75;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
-    }
+#bibi-head {
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0.85; /* Biraz daha net ama boğmuyor */
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 6px #0f0) brightness(1.05); /* Patlamayı engeller */
+}
 
-    #bibi-head-shadow {
-      transform: translate(-48%, -48%);
-      filter: blur(15px) brightness(0.4);
-      opacity: 0.5;
-      z-index: 1;
-      pointer-events: none;
-    }
+#bibi-head-shadow {
+  transform: translate(-50%, -50%); /* Önce -48% idi, şimdi daha net hizalanır */
+  filter: blur(18px) brightness(0.35); /* Yumuşak ve yayılma hissi */
+  opacity: 0.45; /* Daha az agresif */
+  z-index: 1;
+  pointer-events: none;
+}
+
   </style>
 </head>
 <body>
