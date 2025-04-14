@@ -12,6 +12,7 @@
       overflow: hidden;
     }
 
+    /* Matrix Damlaları Arka Plan */
     #matrix-bg {
       position: fixed;
       width: 100%;
@@ -26,6 +27,7 @@
       display: block;
     }
 
+    /* Giriş Efekti */
     #intro-overlay {
       position: absolute;
       width: 100%;
@@ -72,7 +74,7 @@
       position: absolute;
       width: 300px;
       left: 50%;
-      top: 41%;
+      top: 40%;
       transform: translate(-50%, -50%);
       z-index: 1;
       opacity: 0.65;
@@ -80,12 +82,24 @@
       filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
     }
 
+    #bibi-head-glow {
+      position: absolute;
+      width: 260px;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 20px #0f0) blur(5px);
+      pointer-events: none;
+    }
+
     #bibi-head,
     #bibi-head-shadow {
       position: absolute;
       width: 260px;
       left: 50%;
-      top: 41.8%;
+      top: 42%;
       transform-style: preserve-3d;
       transition: transform 0.5s ease-out;
     }
@@ -95,13 +109,12 @@
       z-index: 2;
       opacity: 0.85;
       mix-blend-mode: screen;
-      filter: drop-shadow(0 0 6px #0f0) brightness(1.05);
     }
 
     #bibi-head-shadow {
-      transform: translate(-50%, -50%);
-      filter: blur(14px) brightness(0.35);
-      opacity: 0.45;
+      transform: translate(-48%, -48%);
+      filter: blur(15px) brightness(0.4);
+      opacity: 0.5;
       z-index: 1;
       pointer-events: none;
     }
@@ -109,23 +122,25 @@
 </head>
 <body>
 
-  <!-- Matrix Arkaplan -->
+  <!-- Matrix Background Canvas -->
   <div id="matrix-bg">
     <canvas id="matrix-canvas"></canvas>
   </div>
 
-  <!-- Giriş Overlay -->
-  <div id="intro-overlay"></div>
+  <!-- Giriş Karanlık Overlay -->
+  <div id="intro-overlay">
+    <!-- İsteğe bağlı logo veya yazı -->
+  </div>
 
-  <!-- Bibi Karakteri -->
   <div id="bibi-container">
     <img id="bibi-body" src="./bibi-body.png" alt="Bibi Body">
     <img id="bibi-head-shadow" src="./bibi-head-shadow.png" alt="Bibi Head Shadow">
+    <img id="bibi-head-glow" src="./bibi-head.png" alt="Bibi Head Glow">
     <img id="bibi-head" src="./bibi-head.png" alt="Bibi Head">
   </div>
 
   <script>
-    // Mouse Etkileşimi
+    // 3D Mouse Etkileşimi
     const head = document.getElementById('bibi-head');
     const shadow = document.getElementById('bibi-head-shadow');
 
@@ -146,10 +161,10 @@
       const transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) skew(${skewX}deg, ${skewY}deg)`;
 
       head.style.transform = transform;
-      shadow.style.transform = `translate(-50%, -50%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
+      shadow.style.transform = `translate(-48%, -48%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
     });
 
-    // Matrix Yağmur Efekti
+    // Matrix Damlaları Efekti
     const canvas = document.getElementById("matrix-canvas");
     const ctx = canvas.getContext("2d");
 
