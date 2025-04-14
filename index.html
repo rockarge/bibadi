@@ -71,17 +71,28 @@
     }
 
     #bibi-body {
-  position: absolute;
-  width: 300px;
-  left: 50%;
-  top: 40%; /* biraz yukarı */
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  opacity: 0.65; /* saydamlık eklendi */
-  mix-blend-mode: screen; /* arka planla harman */
-  filter: drop-shadow(0 0 10px #0f0) brightness(1.1); /* yeşil parıltı efekti */
-}
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0.65;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
+    }
 
+    #bibi-head-glow {
+      position: absolute;
+      width: 260px;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 20px #0f0) blur(5px);
+      pointer-events: none;
+    }
 
     #bibi-head,
     #bibi-head-shadow {
@@ -94,20 +105,19 @@
     }
 
     #bibi-head {
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  opacity: 0.75;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
-}
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+    }
 
     #bibi-head-shadow {
-  transform: translate(-48%, -48%);
-  filter: blur(15px) brightness(0.4);
-  opacity: 0.5;
-  z-index: 1;
-  pointer-events: none;
-}
+      transform: translate(-48%, -48%);
+      filter: blur(15px) brightness(0.4);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -125,6 +135,7 @@
   <div id="bibi-container">
     <img id="bibi-body" src="./bibi-body.png" alt="Bibi Body">
     <img id="bibi-head-shadow" src="./bibi-head-shadow.png" alt="Bibi Head Shadow">
+    <img id="bibi-head-glow" src="./bibi-head.png" alt="Bibi Head Glow">
     <img id="bibi-head" src="./bibi-head.png" alt="Bibi Head">
   </div>
 
