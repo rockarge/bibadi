@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bibi AI</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    /* Matrix Damlaları Arka Plan */
+    #matrix-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    /* Giriş Efekti */
+    #intro-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeOut 2.5s ease-out forwards 2s;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    #bibi-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      perspective: 600px;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeInBibi 2s ease-out forwards 2.4s;
+    }
+
+    @keyframes fadeInBibi {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: brightness(0.5) blur(2px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1) blur(0);
+      }
+    }
+
+    #bibi-body {
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0.65;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
+    }
+
+    #bibi-head-glow {
+      position: absolute;
+      width: 260px;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 20px #0f0) blur(5px);
+      pointer-events: none;
+    }
+
+    #bibi-head,
+    #bibi-head-shadow {
+      position: absolute;
+      width: 260px;
+      left: 50%;
+      top: 42%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-out;
+    }
+
+    #bibi-head {
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+    }
+
+    #bibi-head-shadow {
+      transform: translate(-48%, -48%);
+      filter: blur(15px) brightness(0.4);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix Background Canvas -->
+  <div id="matrix-bg">
+    <canvas id="matrix-canvas"></canvas>
+  </div>
+
+  <!-- Giriş Karanlık Overlay -->
+  <div id="intro-overlay">
+    <!-- İsteğe bağlı logo veya yazı -->
+  </div>
+
+  <div id="bibi-container">
+    <img id="bibi-body" src="./bibi-body.png" alt="Bibi Body">
+    <img id="bibi-head-shadow" src="./bibi-head-shadow.png" alt="Bibi Head Shadow">
+    <img id="bibi-head-glow" src="./bibi-head.png" alt="Bibi Head Glow">
+    <img id="bibi-head" src="./bibi-head.png" alt="Bibi Head">
+  </div>
+
+  <script>
+    // 3D Mouse Etkileşimi
+    const head = document.getElementById('bibi-head');
+    const shadow = document.getElementById('bibi-head-shadow');
+
+    document.addEventListener('mousemove', (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const maxTilt = 20;
+      const rotateY = (deltaX / centerX) * maxTilt;
+      const rotateX = -(deltaY / centerY) * maxTilt;
+
+      const skewX = (deltaX / centerX) * 5;
+      const skewY = (deltaY / centerY) * 5;
+
+      const transform = `translate(-50%, -50%) rotateX(${rotateX}deg) rotateY(${rotateY}deg) skew(${skewX}deg, ${skewY}deg)`;
+
+      head.style.transform = transform;
+      shadow.style.transform = `translate(-48%, -48%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
+    });
+
+    // Matrix Damlaları Efekti
+    const canvas = document.getElementById("matrix-canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 35);
+  </script>
+</body>
+</html>
