@@ -88,23 +88,26 @@
       position: absolute;
       width: 260px;
       left: 50%;
-      top: 40%;
+      top: 52%;
       transform-style: preserve-3d;
       transition: transform 0.5s ease-out;
     }
 
     #bibi-head {
-      transform: translate(-50%, -50%);
-      z-index: 2;
-    }
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0.75;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
+}
 
     #bibi-head-shadow {
-      transform: translate(-48%, -48%);
-      filter: blur(15px) brightness(0.4);
-      opacity: 0.6;
-      z-index: 1;
-      pointer-events: none;
-    }
+  transform: translate(-48%, -48%);
+  filter: blur(15px) brightness(0.4);
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+}
   </style>
 </head>
 <body>
