@@ -74,7 +74,7 @@
       position: absolute;
       width: 300px;
       left: 50%;
-      top: 40%;
+      top: 43%; /* bir tık yukarı */
       transform: translate(-50%, -50%);
       z-index: 1;
       opacity: 0.65;
@@ -82,24 +82,12 @@
       filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
     }
 
-    #bibi-head-glow {
-      position: absolute;
-      width: 260px;
-      left: 50%;
-      top: 42%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      opacity: 0.6;
-      filter: drop-shadow(0 0 20px #0f0) blur(5px);
-      pointer-events: none;
-    }
-
     #bibi-head,
     #bibi-head-shadow {
       position: absolute;
       width: 260px;
       left: 50%;
-      top: 42%;
+      top: 38%; /* ışık dudağa binmesin diye yukarı alındı */
       transform-style: preserve-3d;
       transition: transform 0.5s ease-out;
     }
@@ -107,8 +95,9 @@
     #bibi-head {
       transform: translate(-50%, -50%);
       z-index: 2;
-      opacity: 0.85;
+      opacity: 0.75;
       mix-blend-mode: screen;
+      filter: drop-shadow(0 0 10px #0f0) brightness(1.1);
     }
 
     #bibi-head-shadow {
@@ -127,15 +116,12 @@
     <canvas id="matrix-canvas"></canvas>
   </div>
 
-  <!-- Giriş Karanlık Overlay -->
-  <div id="intro-overlay">
-    <!-- İsteğe bağlı logo veya yazı -->
-  </div>
+  <!-- Giriş Overlay -->
+  <div id="intro-overlay"></div>
 
   <div id="bibi-container">
     <img id="bibi-body" src="./bibi-body.png" alt="Bibi Body">
     <img id="bibi-head-shadow" src="./bibi-head-shadow.png" alt="Bibi Head Shadow">
-    <img id="bibi-head-glow" src="./bibi-head.png" alt="Bibi Head Glow">
     <img id="bibi-head" src="./bibi-head.png" alt="Bibi Head">
   </div>
 
@@ -164,7 +150,7 @@
       shadow.style.transform = `translate(-48%, -48%) rotateX(${rotateX * 1.3}deg) rotateY(${rotateY * 1.3}deg) skew(${skewX * 1.2}deg, ${skewY * 1.2}deg)`;
     });
 
-    // Matrix Damlaları Efekti
+    // Matrix Damlaları
     const canvas = document.getElementById("matrix-canvas");
     const ctx = canvas.getContext("2d");
 
